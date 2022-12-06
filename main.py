@@ -64,7 +64,7 @@ class CreateGraph:
 
     def create_graph_altitude_by_time(self):
         ax1 = plt.subplot(1, 1, 1)
-        plt.plot(self.altitudeFromTerrain, self.time, label="Высота от времени")
+        plt.plot(self.time, self.altitudeFromTerrain, label="Высота от времени")
         plt.ylabel("Высота")
         plt.xlabel("Время")
         plt.title("Высота от времени")
