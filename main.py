@@ -2,25 +2,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from constants import DATA_FILE_PATH
-from test import Columns
+from column import columns
 
 plt.style.use('dark_background')
 
 
 class CreateGraph:
     def __init__(self):
+        self.mass_earth = 5.9722 * 10 ** 24
         self.data = self.parseCSV(DATA_FILE_PATH)
-        self.time = np.array(Columns(self.data, "Time"))
-        self.velocity = np.array(Columns(self.data, "Velocity"))
-        self.gforce = np.array(Columns(self.data, "Gforce"))
-        self.twr = np.array(Columns(self.data, "TWR"))
-        self.mass = np.array(Columns(self.data, "Mass"))
-        self.altitudeFromTerrain = np.array(Columns(self.data, "AltitudeFromTerrain"))
-        self.downrangeDistance = np.array(Columns(self.data, "DownrangeDistance"))
-        self.latitude = np.array(Columns(self.data, "Latitude"))
-        self.apoapsis = np.array(Columns(self.data, "Apoapsis"))
-        self.periapsis = np.array(Columns(self.data, "Periapsis"))
-        self.orbitalVelocity = np.array(Columns(self.data, "OrbitalVelocity"))
+        self.time = np.array(columns(self.data, "Time"))
+        self.velocity = np.array(columns(self.data, "Velocity"))
+        self.gforce = np.array(columns(self.data, "Gforce"))
+        self.twr = np.array(columns(self.data, "TWR"))
+        self.mass = np.array(columns(self.data, "Mass"))
+        self.altitudeFromTerrain = np.array(columns(self.data, "AltitudeFromTerrain"))
+        self.downrangeDistance = np.array(columns(self.data, "DownrangeDistance"))
+        self.latitude = np.array(columns(self.data, "Latitude"))
+        self.apoapsis = np.array(columns(self.data, "Apoapsis"))
+        self.periapsis = np.array(columns(self.data, "Periapsis"))
+        self.orbitalVelocity = np.array(columns(self.data, "OrbitalVelocity"))
 
     def parseCSV(self, path: str) -> list:
         data = [[]] * 12
@@ -30,7 +31,7 @@ class CreateGraph:
         while s != "":
             s = file.readline().split(",")
             if len(s) == 1: break
-            for i in range(0, 10):
+            for i in range(0, 11):
                 d = 0 if len(s[i]) == 0 else float(s[i])
                 data[i] = data[i] + [d]
         return data
@@ -78,6 +79,19 @@ class CreateGraph:
         plt.xlabel("Высота")
         plt.title("Ускорение свободного падения G от высоты")
         ax1.grid(color='w', linewidth=0.2)
+        plt.show()
+
+    def create_graph_UniversalGravityLaw_by_time(self):
+        G = 6.67 * 10 ** (-11)
+        universal_gravity_law = G * (
+                (self.mass * self.mass_earth) / (self.altitudeFromTerrain * self.altitudeFromTerrain))
+
+        ax1 = plt.subplot(1, 1, 1)
+        plt.plot(self.time, universal_gravity_law, label="Закон всемирного тяготения от времени")
+        plt.ylabel("Закон всемирного тяготения")
+        plt.xlabel("время")
+        plt.title("Закон всемирного тяготения от времени")
+        plt.figure(figsize=(500, 500))
         plt.show()
 
 
