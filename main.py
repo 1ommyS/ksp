@@ -36,6 +36,14 @@ class CreateGraph:
                 data[i] = data[i] + [d]
         return data
 
+    def calculate_reactive_force(self):
+        force = []
+        for i in range(1, len(self.mass)):
+            force.append(
+                self.mass[i - 1] * (self.velocity[i] - self.velocity[i - 1]) / (self.time[i] - self.time[i - 1]))
+        return force
+
+
     def create_graph_velocity_by_mass(self):
         ax1 = plt.subplot(1, 1, 1)
         plt.plot(self.mass, self.velocity, label="Скорость от Массы")
@@ -102,3 +110,7 @@ graph.create_graph_velocity_by_time()
 graph.create_graph_velocity_by_altitude()
 graph.create_graph_altitude_by_time()
 graph.create_graph_GForce_by_altitude()
+
+el = graph.calculate_reactive_force()
+print('eee')
+print(el)
