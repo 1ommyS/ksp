@@ -21,7 +21,8 @@ R_KERBIN = 600 * 1000
 M_MOON = 7.34 * 10 ** 22
 R_MOON = 1737 * 1000
 
-S_ORBIT = 950400  # m
+S_ORBIT_DARK_MUN = 950400  # m
+S_ORBIT_ZATMENIE = 1009800  # m
 V_ROCKET = 198  # m/s
 
 EARTH_ATMOSHERE_ALTITUDE = 160365.51
@@ -52,4 +53,5 @@ second_moon_space_speed_real_life = calculate_second_space_speed(G, M_MOON, R_MO
 
 print(f"Первая космическая для Земли {first_earth_space_speed_real_life}")
 print(f"Вторая космическая для Земли {second_earth_space_speed_real_life}")
-print(f"Время нахождения КС на темной стороне луны: {S_ORBIT / V_ROCKET}с или {S_ORBIT / V_ROCKET / 60}мин")
+print(f"Время нахождения КС на темной стороне луны: {S_ORBIT_DARK_MUN / V_ROCKET}с или {S_ORBIT_DARK_MUN / V_ROCKET / 60}мин")
+print(f"Время нахождения КС в затмении: {S_ORBIT_ZATMENIE / V_ROCKET}с или {S_ORBIT_ZATMENIE / V_ROCKET / 60}мин")
