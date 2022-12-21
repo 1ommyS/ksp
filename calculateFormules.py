@@ -6,6 +6,7 @@ M_KERBIN = 5.2915793 * 10 ** 22
 R_EARTH = 6400 * 1000
 R_KERBIN = 600 * 1000
 M_MOON = 7.34 * 10 ** 22
+M_MUN = 9.75 * 10 ** 20
 R_MOON = 1737 * 1000
 R_MUN = 200 * 1000
 
@@ -20,8 +21,8 @@ MOON_ORBIT_ALTITUDE = 115596.56
 
 print(f"Первая космическая для Кербина: {math.sqrt(G * M_KERBIN / R_KERBIN)} м/с")
 print(f"Вторая космическая для Кербина: {math.sqrt(2 * G * M_KERBIN / R_KERBIN)} м/с")
-print(f"Первая космическая для Муны: {math.sqrt(G * M_MOON / R_MOON)} м/с")
-print(f"Вторая космическая для Муны: {math.sqrt(2 * G * M_MOON / R_MOON)} м/с")
+print(f"Первая космическая для Муны: {math.sqrt(G * M_MUN / R_MOON)} м/с")
+print(f"Вторая космическая для Муны: {math.sqrt(2 * G * M_MUN / R_MOON)} м/с")
 
 print(
     f"Сила всемирного тяготения в момент выхода на орбиту Кербина"
@@ -33,7 +34,7 @@ print(
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты на орбите Муны"
-    f" {(G * M_MOON * (5.89 * 1000) / ((R_MUN + MOON_ORBIT_ALTITUDE) ** 2))} кг*м/с^2")
+    f" {(G * M_MUN * (5.89 * 1000) / ((R_MUN + MOON_ORBIT_ALTITUDE) ** 2))} кг*м/с^2")
 print()
 print(
     f"Сила всемирного тяготения в момент выхода на орбиту Земли"
