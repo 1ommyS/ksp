@@ -1,18 +1,5 @@
 import math
 
-
-def calculate_first_space_speed(G, M, R):
-    return math.sqrt((G * M) / R)
-
-
-def calculate_second_space_speed(G, M, R):
-    return math.sqrt(2 * G * M / R)
-
-
-def gravity_law(G, m1, m2, R, H):
-    return G * m1 * m2 / (R + H) ** 2
-
-
 G = 6.67 * 10 ** (-11)
 M_EARTH = 5.97 * 10 ** 24
 M_KERBIN = 5.2915793 * 10 ** 22
@@ -31,42 +18,39 @@ EARTH_ATMOSHERE_ALTITUDE = 160000
 BETWEEN_EARTH_AND_MOON_ALTITUDE = 384512010.32
 MOON_ORBIT_ALTITUDE = 115596.56
 
-print(f"Первая космическая для Кербина: {calculate_first_space_speed(G, M_KERBIN, R_KERBIN)} м/с")
-print(f"Вторая космическая для Кербина: {calculate_second_space_speed(G, M_KERBIN, R_KERBIN)} м/с")
-print(f"Первая космическая для Муны: {calculate_first_space_speed(G, M_MOON, R_MOON)} м/с")
-print(f"Вторая космическая для Муны: {calculate_second_space_speed(G, M_MOON, R_MOON)} м/с")
+print(f"Первая космическая для Кербина: {math.sqrt(G * M_KERBIN / R_KERBIN)} м/с")
+print(f"Вторая космическая для Кербина: {math.sqrt(2 * G * M_KERBIN / R_KERBIN)} м/с")
+print(f"Первая космическая для Муны: {math.sqrt(G * M_MOON / R_MOON)} м/с")
+print(f"Вторая космическая для Муны: {math.sqrt(2 * G * M_MOON / R_MOON)} м/с")
 
 print(
     f"Сила всемирного тяготения в момент выхода на орбиту Кербина"
-    f" {gravity_law(G, M_EARTH, 20.88 * 1000, R_KERBIN, KERBIN_ATMOSHERE_ALTITUDE, )} кг*м/с^2")
+    f" {(G * (M_EARTH / 100) * (20.88 * 1000) / ((R_KERBIN + KERBIN_ATMOSHERE_ALTITUDE) ** 2))} кг*м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты между Кербином и Муной"
-    f" {gravity_law(G, M_EARTH, 6.89 * 1000, BETWEEN_EARTH_AND_MOON_ALTITUDE, 0)} кг*м/с^2")
+    f" {(G * (M_EARTH / 100) * (6.89 * 1000) / (BETWEEN_EARTH_AND_MOON_ALTITUDE ** 2))} кг *м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты на орбите Муны"
-    f" {gravity_law(G, M_MOON, 5.89 * 1000, R_MUN, MOON_ORBIT_ALTITUDE)} кг*м/с^2")
+    f" {(G * M_MOON * (5.89 * 1000) / ((R_MUN + MOON_ORBIT_ALTITUDE) ** 2))} кг*м/с^2")
 print()
 print(
     f"Сила всемирного тяготения в момент выхода на орбиту Земли"
-    f" {gravity_law(G, M_EARTH, 20.88 * 1000, R_EARTH, EARTH_ATMOSHERE_ALTITUDE, )} кг*м/с^2")
+    f" {(G * M_EARTH * (20.88 * 1000) / ((R_EARTH + EARTH_ATMOSHERE_ALTITUDE) ** 2))} кг*м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты между Землей и Луной"
-    f" {gravity_law(G, M_EARTH, 6.89 * 1000, 380000000, 0)} кг*м/с^2")
+    f" {(G * M_EARTH * 6.89 * 1000 / 380000000 ** 2)} кг*м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты на орбите Луны"
-    f" {gravity_law(G, M_MOON, 5.89 * 1000, R_MOON, MOON_ORBIT_ALTITUDE)} кг*м/с^2")
+    f" {(G * M_MOON * 5.89 * 1000 / ((R_MOON + MOON_ORBIT_ALTITUDE) ** 2))} кг*м/с^2")
 
-first_earth_space_speed_real_life = calculate_first_space_speed(G, M_EARTH, R_EARTH) / 1000
-second_earth_space_speed_real_life = calculate_second_space_speed(G, M_EARTH, R_EARTH) / 1000
-first_moon_space_speed_real_life = calculate_first_space_speed(G, M_MOON, R_MOON) / 1000
-second_moon_space_speed_real_life = calculate_second_space_speed(G, M_MOON, R_MOON) / 1000
-
-print(f"Первая космическая для Земли {first_earth_space_speed_real_life}")
-print(f"Вторая космическая для Земли {second_earth_space_speed_real_life}")
+print(f"Первая космическая для Земли {math.sqrt(G * M_EARTH / R_EARTH) / 1000} м/с")
+print(f"Вторая космическая для Земли {math.sqrt(2 * G * M_EARTH / R_EARTH) / 1000} м/с")
+print(f"Первая космическая для Луны {math.sqrt(G * M_MOON / R_MOON) / 1000} м/с")
+print(f"Вторая космическая для Луны {math.sqrt(2 * G * M_MOON / R_MOON) / 1000} м/с")
 print(
     f"Время нахождения КС на темной стороне луны: {S_ORBIT_DARK_MUN / V_ROCKET}с или {S_ORBIT_DARK_MUN / V_ROCKET / 60}мин")
 print(f"Время нахождения КС в затмении: {S_ORBIT_ZATMENIE / V_ROCKET}с или {S_ORBIT_ZATMENIE / V_ROCKET / 60}мин")
