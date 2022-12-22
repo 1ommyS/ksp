@@ -31,11 +31,11 @@ print(f"Вторая космическая для Луны {math.sqrt(2 * G * M
 
 print(
     f"Сила всемирного тяготения в момент выхода на орбиту Кербина"
-    f" {(G * (M_EARTH / 100) * (20.88 * 1000) / ((R_KERBIN + KERBIN_ATMOSHERE_ALTITUDE) ** 2))} кг*м/с^2")
+    f" {(G * M_EARTH * (20.88 * 1000) / ((R_KERBIN + KERBIN_ATMOSHERE_ALTITUDE) ** 2))} кг*м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты между Кербином и Муной"
-    f" {(G * (M_EARTH / 100) * (6.89 * 1000) / (BETWEEN_EARTH_AND_MOON_ALTITUDE ** 2))} кг *м/с^2")
+    f" {(G * M_KERBIN * (6.89 * 1000) / (BETWEEN_EARTH_AND_MOON_ALTITUDE ** 2))} кг *м/с^2")
 
 print(
     f"Сила всемирного тяготения в момент нахождения ракеты на орбите Муны"
